@@ -4,11 +4,15 @@ Description: >
   orders-api
 
 Resources:
-  HelloWorldFunction:
+  CreateOrderFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: orders_api/
-      Handler: app.lambda_handler
+      Handler: create.lambda_handler
       Runtime: python3.8
-      Architectures:
-        - x86_64
+      Events:
+        CreateOrders:
+          Type: Api
+          Properties:
+            Path: /orders
+            Method: POST
