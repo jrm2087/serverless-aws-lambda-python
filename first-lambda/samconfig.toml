@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "lambda-python-ini"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-18wgoagiwce9s"
+s3_prefix = "lambda-python-ini"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
