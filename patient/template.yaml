@@ -51,6 +51,18 @@ Resources:
           Type: SNS
           Properties:
             Topic: !Ref PatientCheckoutTopic
+  ClaimManagementFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: patient_checkout/
+      Handler: claimmanagement.lambda_handler
+      Runtime: python3.8
+      Events:
+        ClaimEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt ClaimManagementQueue.Arn
+            BatchSize: 10
   ErrorHandlerFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -62,3 +74,5 @@ Resources:
           Type: SNS
           Properties:
             Topic: !Ref PatientCheckoutDLQ
+  ClaimManagementQueue:
+    Type: AWS::SQS::Queue
