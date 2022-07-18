@@ -10,6 +10,7 @@ logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
     logger.info(f'event -> {event}')
+    logger.info(f'context -> {context}')
     bucket_name = event['Records'][0]['s3']['bucket']['name']
     file_key = event['Records'][0]['s3']['object']['key']
     logger.info(f'Reading {file_key} from {bucket_name}')
