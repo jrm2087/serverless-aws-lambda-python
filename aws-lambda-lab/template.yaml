@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  aws-lambda-lab
+
+Globals:
+  Function:
+    Timeout: 20
+
+Resources:
+  AwsLabBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::StackName}-${AWS::Region}
+  AwsLabFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "Laboratorio AWS Lambda"
+      FunctionName: !Sub ${AWS::StackName}-${AWS::Region}
+      CodeUri: aws_lab/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Sub ${AWS::StackName}-${AWS::Region}
+        - S3WritePolicy:
+            BucketName: !Sub ${AWS::StackName}-${AWS::Region}
+      Events:
+        S3Event:
+          Type: S3
+          Properties:
+            Bucket: !Ref AwsLabBucket
+            Events: s3:ObjectCreated:*
