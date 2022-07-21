@@ -2,9 +2,9 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "aws-lambda-lab"
-s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-16roq5qw0c5rs"
-s3_prefix = "aws-lambda-lab"
+stack_name = "aws-lambda-lab-jdrodrig"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-10f1yol11sxmw"
+s3_prefix = "aws-lambda-lab-jdrodrig"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
